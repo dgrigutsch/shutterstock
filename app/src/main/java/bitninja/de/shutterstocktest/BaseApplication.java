@@ -3,6 +3,7 @@ package bitninja.de.shutterstocktest;
 import android.app.Application;
 import android.graphics.Bitmap;
 import android.util.Base64;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,6 +28,8 @@ import retrofit.client.OkClient;
  * Created by dgrigutsch on 28.07.15.
  */
 public class BaseApplication extends Application {
+
+    private static final String TAG = BaseApplication.class.getSimpleName();
 
     @Override
     public void onCreate() {
@@ -79,6 +82,10 @@ public class BaseApplication extends Application {
                 .loggingEnabled(true)
                 .downloader(new OkHttpDownloader(client))
                 .build();
-        Picasso.setSingletonInstance(p);
-    }
+            try {
+                Picasso.setSingletonInstance(p);
+            }catch (Exception e){
+                Log.d(TAG,"Picassobug: ",e);
+            }
+        }
 }

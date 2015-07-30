@@ -44,7 +44,7 @@ public class MainPresenter extends BasePresenter<MainActivity> {
         );
     }
 
-    interface PresenterCallback {
+    public interface PresenterCallback {
         void updateData(MainModel model);
     }
 }

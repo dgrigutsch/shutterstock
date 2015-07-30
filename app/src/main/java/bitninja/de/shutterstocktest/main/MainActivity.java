@@ -29,6 +29,7 @@ public class MainActivity extends BaseActivity<MainPresenter> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        loadMainFragment();
     }
 
     @Override
@@ -39,6 +40,12 @@ public class MainActivity extends BaseActivity<MainPresenter> {
     @Override
     public MainPresenter createPresenter() {
         return new MainPresenter();
+    }
+
+    private void loadMainFragment(){
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.container, new MainActivityFragment(),MainActivityFragment.class.getSimpleName())
+                .commit();
     }
 
     public void showLoader(){
